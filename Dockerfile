@@ -16,6 +16,14 @@ COPY init_password.py /opt/hb-template/init_password.py
 COPY seed/simple_pmm.yml /opt/hb-template/seed/simple_pmm.yml
 RUN chmod +x /opt/hb-template/entrypoint.sh
 
+# Interactive shells (railway ssh) start in conda `base`, which lacks hummingbot
+# deps — `hbot` then dies with ModuleNotFoundError (pandas). Auto-activate the
+# hummingbot env for login (profile.d) and interactive (.bashrc) shells.
+RUN echo "source /opt/conda/etc/profile.d/conda.sh && conda activate hummingbot" \
+      > /etc/profile.d/hummingbot-env.sh \
+ && echo "source /opt/conda/etc/profile.d/conda.sh && conda activate hummingbot" \
+      >> /root/.bashrc
+
 # HTTP health endpoint used by the Railway healthcheck.
 EXPOSE 8080
 
