@@ -19,6 +19,7 @@ Deploy with one click. On first boot the container seeds a sample strategy confi
 - Built-in HTTP health endpoint on port 8080 (`/health` reports bot process liveness)
 - Tune strategy parameters via `HBOT_*` env vars — no need to edit YAML by hand
 - `hbot` CLI is available inside the container for advanced control: `hbot status --json`, `hbot stop`, `hbot connect kraken`, etc.
+- `railway ssh -s hummingbot` shells auto-activate the `hummingbot` conda env, so `hbot` works immediately. On deployments created before this behavior shipped (or any non-login shell), run `conda activate hummingbot` first — otherwise `hbot` fails with `ModuleNotFoundError` (it runs against conda `base`, which lacks the bot's dependencies).
 
 ## Why Deploy
 
@@ -62,7 +63,8 @@ Deploy with one click. On first boot the container seeds a sample strategy confi
 | `HBOT_BID_SPREAD` / `HBOT_ASK_SPREAD` | `0.5` / `0.5` | Spreads from mid price, in percent |
 | `HBOT_ORDER_REFRESH_TIME` | `30` | Seconds between order refreshes |
 | `HBOT_PRICE_TYPE` | `mid` | `mid`, `last`, `best_bid`, or `best_ask` |
-| `HBOT_KILL_SWITCH_ENABLED` / `HBOT_KILL_SWITCH_RATE` | `false` / `-10.0` | Emergency stop on drawdown |
+
+`HBOT_*` overrides apply only to keys already present in the seeded config file. The bundled `simple_pmm` strategy does not support a kill switch — strategies that do (e.g. other V2 scripts) can be added on the volume and configured there.
 
 ## Post-Deploy Setup
 
