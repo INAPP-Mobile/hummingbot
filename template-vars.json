@@ -1,0 +1,62 @@
+{
+  "PORT": {
+    "name": "HTTP Server Port",
+    "defaultValue": "8080",
+    "description": "Health endpoint port. Must stay 8080 — it matches the Railway domain target port configured in this template.",
+    "isOptional": true
+  },
+  "CONFIG_PASSWORD": {
+    "name": "Keystore Password",
+    "defaultValue": "${{secret(16)}}",
+    "description": "Password for Hummingbot's encrypted keystore (stores connector API keys). Auto-generated per deployment. Set your own to keep keys readable across redeploys.",
+    "isOptional": false
+  },
+  "SCRIPT_CONFIG": {
+    "name": "Strategy Config File",
+    "defaultValue": "simple_pmm.yml",
+    "description": "Strategy config file to run from conf/scripts/ on the volume. The file is seeded on first boot and persists across redeploys.",
+    "isOptional": true
+  },
+  "HBOT_EXCHANGE": {
+    "name": "Exchange Connector",
+    "defaultValue": "kraken_paper_trade",
+    "description": "Connector id. Paper-trade connectors (e.g. kraken_paper_trade, binance_paper_trade) simulate fills with no API keys. Switch to a live connector (e.g. kraken) after adding API keys via the keystore.",
+    "isOptional": true
+  },
+  "HBOT_TRADING_PAIR": {
+    "name": "Trading Pair",
+    "defaultValue": "ETH-USD",
+    "description": "Market to make, in BASE-QUOTE format (e.g. ETH-USD, BTC-USDT).",
+    "isOptional": true
+  },
+  "HBOT_ORDER_AMOUNT": {
+    "name": "Order Amount",
+    "defaultValue": "0.05",
+    "description": "Order size in base currency.",
+    "isOptional": true
+  },
+  "HBOT_BID_SPREAD": {
+    "name": "Bid Spread",
+    "defaultValue": "0.5",
+    "description": "Distance of buy orders below the mid price, in percent.",
+    "isOptional": true
+  },
+  "HBOT_ASK_SPREAD": {
+    "name": "Ask Spread",
+    "defaultValue": "0.5",
+    "description": "Distance of sell orders above the mid price, in percent.",
+    "isOptional": true
+  },
+  "HBOT_ORDER_REFRESH_TIME": {
+    "name": "Order Refresh Time",
+    "defaultValue": "30",
+    "description": "Seconds between order cancel-and-replace cycles.",
+    "isOptional": true
+  },
+  "HBOT_PRICE_TYPE": {
+    "name": "Price Type",
+    "defaultValue": "mid",
+    "description": "Reference price for spreads: mid, last, best_bid, or best_ask.",
+    "isOptional": true
+  }
+}

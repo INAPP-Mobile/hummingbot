@@ -1,0 +1,42 @@
+{
+  "PORT": {
+    "value": "8080",
+    "description": "Health endpoint port. Must stay 8080 — it matches the Railway domain target port configured in this template."
+  },
+  "CONFIG_PASSWORD": {
+    "value": "${{secret(16)}}",
+    "description": "Password for Hummingbot's encrypted keystore (stores connector API keys). Auto-generated per deployment. Set your own to keep keys readable across redeploys."
+  },
+  "SCRIPT_CONFIG": {
+    "value": "simple_pmm.yml",
+    "description": "Strategy config file to run from conf/scripts/ on the volume. Seeded on first boot with a pure market-making sample strategy."
+  },
+  "HBOT_EXCHANGE": {
+    "value": "kraken_paper_trade",
+    "description": "Connector id. Paper-trade connectors simulate fills with no API keys. Switch to a live connector (e.g. kraken) after adding API keys via the keystore."
+  },
+  "HBOT_TRADING_PAIR": {
+    "value": "ETH-USD",
+    "description": "Market to make, in BASE-QUOTE format (e.g. ETH-USD, BTC-USDT)."
+  },
+  "HBOT_ORDER_AMOUNT": {
+    "value": "0.05",
+    "description": "Order size in base currency."
+  },
+  "HBOT_BID_SPREAD": {
+    "value": "0.5",
+    "description": "Distance of buy orders below the mid price, in percent."
+  },
+  "HBOT_ASK_SPREAD": {
+    "value": "0.5",
+    "description": "Distance of sell orders above the mid price, in percent."
+  },
+  "HBOT_ORDER_REFRESH_TIME": {
+    "value": "30",
+    "description": "Seconds between order cancel-and-replace cycles."
+  },
+  "HBOT_PRICE_TYPE": {
+    "value": "mid",
+    "description": "Reference price for spreads: mid, last, best_bid, or best_ask."
+  }
+}
