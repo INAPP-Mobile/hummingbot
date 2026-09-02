@@ -1,0 +1,13 @@
+# Hummingbot sample V2 script config — simple_pmm (pure market making).
+# Seeded by the entrypoint on first boot; safe to edit in place.
+# Connector defaults to kraken_paper_trade (paper trading = simulated fills,
+# no API keys needed; Kraken is reachable from all regions).
+# Fields must match SimplePMMConfig in scripts/simple_pmm.py.
+script_file_name: simple_pmm.py
+exchange: kraken_paper_trade
+trading_pair: ETH-USD
+order_amount: 0.05
+bid_spread: 0.5
+ask_spread: 0.5
+order_refresh_time: 30
+price_type: mid
