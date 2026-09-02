@@ -68,8 +68,8 @@ Deploy with one click. On first boot the container seeds a sample strategy confi
 
 1. Watch the deploy logs — the bot seeds its config, connects to Kraken paper trading, and starts quoting
 2. Check `/health` on your deployment URL — it reports the bot process liveness
-3. Verify trading activity: `railway run --service hummingbot -- hbot status --json` (or `hbot logs`)
-4. Go live when ready: `railway run --service hummingbot -- hbot connect kraken`, set `HBOT_EXCHANGE=kraken`, and redeploy
+3. Watch trading activity in the deploy logs (`railway logs` — you'll see order placed/canceled lines)
+4. Go live when ready: `railway ssh -s hummingbot` into the container, then `hbot connect kraken` (conda env pre-activated), set `HBOT_EXCHANGE=kraken`, and redeploy
 5. Swap strategies: edit `conf/scripts/*.yml` on the volume (or add new scripts), then redeploy
 
 ## Links
