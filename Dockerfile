@@ -1,5 +1,5 @@
 # Pinned upstream release image (conda-based, ~1.4 GB). Do NOT use :latest.
-FROM hummingbot/hummingbot:version-2.16.0
+FROM hummingbot/hummingbot:version-2.17.0
 
 USER root
 
